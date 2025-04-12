@@ -2,52 +2,110 @@
 
 import Image from 'next/image';
 import { Target, BookOpenText, Lightbulb } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 const HeroSection = () => {
     return (
         <section className="pt-0 pb-16 bg-white text-gray-800">
 
-            {/* Text Slider Animation */}
-            <div className="overflow-hidden bg-[#6A1414] py-4">
-                <div className="animate-marquee whitespace-nowrap text-white font-semibold text-base sm:text-lg">
+            {/* Modern Animated Text Slider */}
+            <div className="relative overflow-hidden bg-[#2d4e2f] py-3">
+                <div className="animate-slide flex whitespace-nowrap font-semibold text-white text-base sm:text-lg">
                     <span className="mx-6">📢 Admissions Open for Fall 2025</span>
                     <span className="mx-6">🎓 Empowering Students Through Education</span>
                     <span className="mx-6">📚 Sindh's Academic Vision for the Future</span>
                     <span className="mx-6">🏛️ 27 Universities • 8 Boards • 2 Departments</span>
+                    <span className="mx-6">📢 Admissions Open for Fall 2025</span>
+                    <span className="mx-6">🎓 Empowering Students Through Education</span>
                 </div>
             </div>
 
-            {/* Banner Image */}
-            <div className="banner-container mt-4">
+            <style jsx>{`
+                @keyframes slide {
+                    0% { transform: translateX(0); }
+                    100% { transform: translateX(-50%); }
+                }
+                .animate-slide {
+                    animation: slide 25s linear infinite;
+                }
+            `}</style>
+
+            {/* Banner Image with Slide-In Animation */}
+            <motion.div
+                initial={{ x: '100%', opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                transition={{ duration: 1.2 }}
+                className="banner-container mt-4"
+            >
                 <img
                     src="/banner.png"
                     alt="Sindh Educational Banner"
-                    className="banner-image"
+                    className="banner-image w-full rounded-xl shadow-md"
                 />
-            </div>
+            </motion.div>
 
+             {/* Redesigned Overview Section */}
+             <motion.div
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 1 }}
+                className="max-w-6xl mx-auto px-6 text-center mt-20"
+            >
+                <motion.h2
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.6 }}
+                    className="text-4xl font-extrabold mb-6 text-[#0C4B33]"
+                >
+                    Transforming Education Across Sindh
+                </motion.h2>
 
-            {/* Overview */}
-            <div className="max-w-5xl mx-auto px-6 text-center mt-12">
-                <h2 className="text-3xl font-semibold mb-4 text-[#0C4B33]">Overview</h2>
-                <div className="text-lg text-gray-600 leading-relaxed text-justify space-y-4">
-                    <p>
-                        The Universities and Boards Department of Sindh is responsible for managing educational, developmental, and administrative services across the province. It oversees both public and private academic institutions, along with the recruitment and regulation of faculty and staff.
-                    </p>
-                    <p>
-                        We focus on innovation, research, and academic excellence happening throughout Sindh’s higher education institutions. Each week, we spotlight new ideas, share insights on evolving topics, and encourage meaningful discussions around education.
-                    </p>
-                    <p>
-                        Our primary objective is to raise the standard of education in Sindh—benchmarking it against national and international institutions. We emphasize equal access to quality education for all social classes, contributing to the growth of the province and the nation.
-                    </p>
-                    <p>
-                        The department supervises 27 universities, 8 educational boards, and 2 attached departments. With its headquarters in Karachi and branch offices across Sindh, it ensures strong governance and consistent educational progress province-wide.
-                    </p>
-                </div>
-            </div>
+                <motion.p
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    transition={{ delay: 0.3, duration: 0.8 }}
+                    className="text-lg text-gray-700 max-w-4xl mx-auto mb-10 leading-relaxed"
+                >
+                    The Department of Universities & Boards is reshaping the educational landscape of Sindh —
+                    fostering academic excellence, transparency, and innovation in higher education.
+                </motion.p>
 
-            {/* Mission / Objectives / Goals */}
-            <div className="max-w-6xl mx-auto px-6 mt-16 grid grid-cols-1 md:grid-cols-3 gap-10">
+                {/* Animated Stats */}
+                <motion.div
+                    initial={{ opacity: 0, y: 40 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8 }}
+                    className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 text-center"
+                >
+                    <div className="bg-[#e7f7ef] p-6 rounded-xl shadow hover:shadow-md transition duration-300">
+                        <h3 className="text-3xl font-bold text-[#0C4B33]">27+</h3>
+                        <p className="mt-2 text-sm text-gray-600">Universities Governed</p>
+                    </div>
+                    <div className="bg-[#e7f7ef] p-6 rounded-xl shadow hover:shadow-md transition duration-300">
+                        <h3 className="text-3xl font-bold text-[#0C4B33]">8</h3>
+                        <p className="mt-2 text-sm text-gray-600">Educational Boards</p>
+                    </div>
+                    <div className="bg-[#e7f7ef] p-6 rounded-xl shadow hover:shadow-md transition duration-300">
+                        <h3 className="text-3xl font-bold text-[#0C4B33]">2</h3>
+                        <p className="mt-2 text-sm text-gray-600">Departments Attached</p>
+                    </div>
+                    <div className="bg-[#e7f7ef] p-6 rounded-xl shadow hover:shadow-md transition duration-300">
+                        <h3 className="text-3xl font-bold text-[#0C4B33]">100K+</h3>
+                        <p className="mt-2 text-sm text-gray-600">Students Impacted</p>
+                    </div>
+                </motion.div>
+            </motion.div>
+
+            {/* Mission / Objectives / Goals Cards */}
+            <motion.div
+                initial={{ opacity: 0, y: 60 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8 }}
+                className="max-w-6xl mx-auto px-6 mt-20 grid grid-cols-1 md:grid-cols-3 gap-10"
+            >
                 {/* Mission */}
                 <div className="bg-[#F5FDF8] rounded-2xl p-6 shadow-md hover:shadow-lg transition">
                     <div className="flex items-center mb-4 text-[#0F5A3E]">
@@ -80,7 +138,7 @@ const HeroSection = () => {
                         Build a sustainable education system that nurtures future leaders, innovators, and scholars of Sindh.
                     </p>
                 </div>
-            </div>
+            </motion.div>
         </section>
     );
 };

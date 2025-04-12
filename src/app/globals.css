@@ -52,5 +52,15 @@ body {
   animation: marquee 25s linear infinite;
 }
 
+@keyframes ticker {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+
+.animate-ticker {
+  animation: ticker 25s linear infinite;
+}
+
+
 
 
